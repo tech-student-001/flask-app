@@ -1,0 +1,248 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Navigation */
+ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 20px;
+    list-style-type: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    padding: 8px 12px;
+    font-size: 18px;
+}
+
+.nav-links a:hover {
+    color: red;
+    border-radius: 10px;
+}
+
+/*index-main*/
+.artwork-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artwork-container {
+    width: 800px;
+}
+
+/* Index Image Styling */
+.artwork-image {
+    width: 600px;
+    height: 400px;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.slider-image {
+    display: none;
+}
+
+.slider-image.active {
+    display: block;
+}
+
+/* dataset styling */
+.db-images {
+    width: 150px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.db-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: left; */
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 900px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+
+/* Form Styles */
+.form-container {
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    /* text-align: left; */
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 8px;
+    text-align: left;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Buttons */
+button,
+.txt-btn {
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    transition: 0.1s;
+    height: fit-content;
+}
+
+.txt-btn:hover {
+    background-color: #93ff7d;
+    border-radius: 20px;
+}
+
+
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    padding: 10px;
+    background-color: #ddd;
+}
+
+/* Flash Messages */
+.flash-messages {
+    list-style: none;
+    padding: 10px;
+    text-align: center;
+}
+
+.flash-messages .success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.flash-messages .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+/* action buttons edit*/
+
+.action-btns {
+    display: flex;
+    justify-content: space-around;
+}
+
+.action-btns button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+
+.action-btns i {
+    color: gray;
+    /* Default grey color */
+    transition: color 0.3s ease-in-out;
+}
+
+/* Change color on hover */
+.action-btns button:hover i.fa-pen-to-square {
+    color: #007bff;
+    /* Blue for edit */
+}
+
+.action-btns button:hover i.fa-trash-alt {
+    color: #dc3545;
+    /* Red for delete */
+}
+.action-btns button:hover i.fa-plus {
+    color: #35dc35;
+    /* green for Add */
+}
+
+/* POP-UP Form */
+.popup-form {
+    display: none;
+    position: fixed;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000; /* Above everything */
+}
+
+/* Disable interactions everywhere except popup */
+.popup-active * {
+    pointer-events: none;
+}
+
+.popup-active .popup-form,
+.popup-active .popup-form * {
+    pointer-events: all;
+}
+
+/* Button hover effects */
+.action-btns button:hover i.fa-x {
+    color: #dc3545; /* Red for delete */
+}
+
+.action-btns button:hover .fa-check {
+    color: #35dc35; /* Green for add */
+}

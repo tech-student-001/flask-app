@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Get in touch</h1>
+
+    <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('manage_contact') }}">Manage Contacts</a></li>
+        <li><a href="{{ url_for('manage_artwork') }}">Manage Artworks</a></li>
+    </ul>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="form-container">
+        <form action="{{ url_for('contact') }}" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+
+            <label for="favorite_artwork">Favorite Artwork:</label>
+            <select id="favorite_artwork" name="favorite_artwork">
+                <option value="" disabled selected>Select an artwork</option>
+                {% for artwork in artworks %}
+                    <option value="{{ artwork.title }}">{{ artwork.title }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="txt-btn">Submit</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; Art Portfolio</p>
+    </footer>
+
+</body>
+</html>

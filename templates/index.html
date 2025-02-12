@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Portfolio</title>
+    <!---stylesheet link-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!---icons link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!---script link-->
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <header>
+        <h1>Art Portfolio</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('manage_contact') }}">Manage Contacts</a></li>
+                <li><a href="{{ url_for('manage_artwork') }}">Manage Artworks</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="artwork-gallery">
+            <button id="prevBtn" class="icon-btn">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </button>
+
+            <div class="artwork-container">
+                {% for artwork in artworks %}
+                <div class="artwork-card">
+                    <h2>{{ artwork.title }}</h2>
+                    <img src="{{ artwork.image_url }}" alt="{{ artwork.title }}" class="artwork-image">
+                    <p><strong>Year:</strong> {{ artwork.year }}</p>
+                    <p><strong>Style:</strong> {{ artwork.style }}</p>
+                    <p>{{ artwork.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <button id="nextBtn"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+        </section><br>
+        <div class="nav-links">
+            <a href="{{ url_for('contact') }}">Contact
+            <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Art Portfolio</p>
+    </footer>
+</body>
+
+</html>

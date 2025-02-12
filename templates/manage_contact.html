@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Contacts</title>
+    <!---stylesheet link-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!---icons link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!---script link-->
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <header>
+        <h1>Manage Contacts</h1>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('manage_contact') }}">Manage Contacts</a></li>
+                <li><a href="{{ url_for('manage_artwork') }}">Manage Artworks</a></li>
+            </ul>
+            <!-- Add Contact Button -->
+            <div class="action-btns">
+                <button title="Add-Contact" onclick="openAddContactForm()">
+                    Add Contact <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="db-main">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Favorite Artwork</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                <tr id="contact-{{ contact.id }}">
+                    <td>{{ contact.id }}</td>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.phone }}</td>
+                    <td>{{ contact.favorite_artwork }}</td>
+                    <td>
+                        <div class="action-btns">
+                            <!-- Edit Contact Button -->
+                            <button title="Edit" onclick="openEditContactForm('{{ contact.id }}')">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <!-- Delete Contact Button -->
+                            <button title="Delete" onclick="deleteContact('{{ contact.id }}')">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Hidden Add Contact Form -->
+        <div id="addContactForm" class="popup-form">
+            <form id="contactForm">
+                <h2>Add Contact</h2>
+
+                <label>Name:</label>
+                <input type="text" name="name" required>
+
+                <label>Email:</label>
+                <input type="email" name="email" required>
+
+                <label>Phone:</label>
+                <input type="text" name="phone" required>
+
+                <label for="favorite_artwork">Favorite Artwork:</label>
+                <select id="favorite_artwork" name="favorite_artwork">
+                    <option value="" disabled selected>Select an artwork</option>
+                    {% for artwork in artworks %}
+                    <option value="{{ artwork.title }}">{{ artwork.title }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="action-btns"><button type="submit"><i class="fa-solid fa-check"></i></button>
+                    <button type="button" onclick="closeAddContactForm()"><i class="fa-solid fa-x"></i></button>
+                </div>
+            </form>
+
+        </div>
+
+        <div id="editContactForm" class="popup-form" style="display: none;">
+            <form id="editForm">
+                <h2>Edit Contact</h2>
+
+                <input type="hidden" id="edit-contact-id"> <!-- Hidden field for ID -->
+
+                <label>Name:</label>
+                <input type="text" id="edit-name" name="name" required>
+
+                <label>Email:</label>
+                <input type="email" id="edit-email" name="email" required>
+
+                <label>Phone:</label>
+                <input type="text" id="edit-phone" name="phone" required>
+
+                <label for="edit-favorite-artwork">Favorite Artwork:</label>
+                <select id="edit-favorite-artwork" name="favorite_artwork">
+                    <option value="" disabled selected>Select an artwork</option>
+                    {% for artwork in artworks %}
+                    <option value="{{ artwork.title }}">{{ artwork.title }}</option>
+                    {% endfor %}
+                </select>
+
+                <div class="action-btns">
+                    <button type="submit"><i class="fa-solid fa-check"></i></button>
+                    <button type="button" onclick="closeEditContactForm()"><i class="fa-solid fa-x"></i></button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+</body>
+
+</html>
